@@ -1,0 +1,60 @@
+{
+  "resources": [
+    {
+      "artifactFamily": "pathRules",
+      "path": "documentation.yml",
+      "schemaVersion": 1,
+      "sha256": "700d66ff76b900c5208e17feb85771dc8c1779387ea78fb516079ab70455c3a4",
+      "source": "github-linguist",
+      "sourcePath": "lib/linguist/documentation.yml"
+    },
+    {
+      "artifactFamily": "languageCatalog",
+      "path": "generic.yml",
+      "schemaVersion": 1,
+      "sha256": "5f530b2b4ffbda0ed08257f45413dc02389c6f27ea2d700427b24734dc6ff484",
+      "source": "github-linguist",
+      "sourcePath": "lib/linguist/generic.yml"
+    },
+    {
+      "artifactFamily": "heuristics",
+      "path": "heuristics.yml",
+      "schemaVersion": 1,
+      "sha256": "ab475ccd63d98075516acfcda12dfc4eb29d634661245772bdac633470491571",
+      "source": "github-linguist",
+      "sourcePath": "lib/linguist/heuristics.yml"
+    },
+    {
+      "artifactFamily": "languageCatalog",
+      "path": "languages.yml",
+      "schemaVersion": 1,
+      "sha256": "183243e30496ba53f5f8743b0e39c9f0e0bccc5a32639f7b541cc2285db0e043",
+      "source": "github-linguist",
+      "sourcePath": "lib/linguist/languages.yml"
+    },
+    {
+      "artifactFamily": "languageCatalog",
+      "path": "popular.yml",
+      "schemaVersion": 1,
+      "sha256": "e81d08d0afcb774124fb0b4c8a0480e92e826fd6ede3534e94ff16c7b18be8b3",
+      "source": "github-linguist",
+      "sourcePath": "lib/linguist/popular.yml"
+    },
+    {
+      "artifactFamily": "pathRules",
+      "path": "vendor.yml",
+      "schemaVersion": 1,
+      "sha256": "4d59676f307e8541c1925315b8b51ee79e00393a1c67f726206c68e8bf4d802b",
+      "source": "github-linguist",
+      "sourcePath": "lib/linguist/vendor.yml"
+    }
+  ],
+  "schemaVersion": 1,
+  "sources": {
+    "github-linguist": {
+      "commit": "5fbdfcb8133be2bed88bf3ce62b2335f50474525",
+      "origin": "https://github.com/github-linguist/linguist.git",
+      "version": "9.7.0"
+    }
+  }
+}

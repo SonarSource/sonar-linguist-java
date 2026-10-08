@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "classifier": 1,
+    "compiledRegex": 1,
+    "conformanceFixtures": 1,
+    "heuristics": 1,
+    "languageCatalog": 1,
+    "pathRules": 1,
+    "runtimeDataManifest": 1,
+    "upstreamManifest": 1
+  },
+  "registryVersion": 1
+}

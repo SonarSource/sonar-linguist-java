@@ -15,34 +15,18 @@ concurrency:
 
 jobs:
   build:
-    # For guidance on runner selection, visit:
-    # https://xtranet-sonarsource.atlassian.net/wiki/spaces/Platform/pages/3694231566/GitHub+Actions+Runner+-+GitHub
-    runs-on: sonar-xs
+    runs-on: ubuntu-latest
     name: Build
     permissions:
-      id-token: write
       contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
-      # SECURITY BEST PRACTICES:
-      # - Pin all external actions to specific SHA commits (not tags) for security
-      # - All secrets MUST come from Vault using SonarSource/vault-action-wrapper
-      # - Never use GitHub Secrets for sensitive data
-
-      # TODO: Add your build steps here
-      #
-      # For ready-to-use SonarSource GitHub Actions with real-world examples
-      # and production-ready implementations, visit:
-      # https://github.com/SonarSource/ci-github-actions
-      #
-      # For caching, use SonarSource/gh-action_cache@v1
-      # It automatically chooses GitHub Actions cache (public) or S3 cache (private)
-      #
-      # Real-world reference repositories:
-      # - sonar-dummy: Private Java/Maven
-      # - sonar-dummy-gradle-oss: Public Java/Gradle
-      # - sonar-dummy-python-oss: Public Python/Poetry
-      # - sonar-dummy-js: Public NodeJS/Yarn
-      #
+      - name: Set up Java 21
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Build and verify publication
+        run: ./gradlew --no-daemon build publishToMavenLocal
