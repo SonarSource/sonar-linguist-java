@@ -19,6 +19,9 @@ import org.eclipse.jgit.attributes.Attribute;
 import org.eclipse.jgit.attributes.Attributes;
 import org.eclipse.jgit.attributes.AttributesNode;
 import org.eclipse.jgit.attributes.AttributesNodeProvider;
+import org.eclipse.jgit.errors.AmbiguousObjectException;
+import org.eclipse.jgit.errors.IncorrectObjectTypeException;
+import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.FileMode;
 import org.eclipse.jgit.lib.ObjectId;
@@ -61,7 +64,7 @@ final class RepositoryAnalyzer {
 
   RepositoryAnalysis analyze(Path path, String revision) {
     try (Repository repository = open(path); RevWalk revisions = new RevWalk(repository)) {
-      ObjectId commitId = repository.resolve(revision + "^{commit}");
+      ObjectId commitId = resolveCommit(repository, revision);
       if (commitId == null) {
         if (revision.equals("HEAD") && repository.exactRef(Constants.HEAD) != null
             && repository.exactRef(Constants.HEAD).getObjectId() == null) {
@@ -73,6 +76,14 @@ final class RepositoryAnalyzer {
       return scan(repository, commit);
     } catch (IOException e) {
       throw new UncheckedIOException("Cannot analyze repository: " + path, e);
+    }
+  }
+
+  private static ObjectId resolveCommit(Repository repository, String revision) throws IOException {
+    try {
+      return repository.resolve(revision + "^{commit}");
+    } catch (MissingObjectException | IncorrectObjectTypeException | AmbiguousObjectException e) {
+      throw new IllegalArgumentException("Unknown commit revision: " + revision, e);
     }
   }
 

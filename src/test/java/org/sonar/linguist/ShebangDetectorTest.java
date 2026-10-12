@@ -65,6 +65,10 @@ class ShebangDetectorTest {
       Arguments.of("#!/usr/bin/env -vS ruby -wKU\n", "ruby"),
       Arguments.of("#!/usr/bin/env --split-string sed -f\n", "sed"),
       Arguments.of("#!/usr/bin/env -S GH_TOKEN=value deno run\n", "deno"),
+      Arguments.of("#!/usr/bin/env node --harmony app\n", "node"),
+      Arguments.of("#!/usr/bin/env python -u -W ignore\n", "python"),
+      Arguments.of("#!/usr/bin/env python -u\r\n", "python"),
+      Arguments.of("#!/usr/bin/env deno run FOO=bar\n", "deno"),
       Arguments.of("#!/usr/bin/osascript", "osascript"));
   }
 

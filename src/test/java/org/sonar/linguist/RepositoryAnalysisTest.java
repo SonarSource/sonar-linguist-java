@@ -9,11 +9,13 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.dircache.DirCache;
 import org.eclipse.jgit.dircache.DirCacheEntry;
+import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.FileMode;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.PersonIdent;
@@ -340,6 +342,46 @@ class RepositoryAnalysisTest {
       commit(git);
       assertThatThrownBy(() -> linguist.analyzeRepository(root, "does-not-exist"))
         .isInstanceOf(IllegalArgumentException.class);
+    }
+  }
+
+  @Test
+  void failsClearlyForRevisionsNotNamingAnExistingCommit() throws Exception {
+    Path root = temporary.resolve("repo");
+    try (Git git = Git.init().setDirectory(root.toFile()).call()) {
+      write(root, "main.java", "text");
+      commit(git);
+      assertThatThrownBy(() -> linguist.analyzeRepository(root, "0123456789abcdef0123456789abcdef01234567"))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Unknown commit revision");
+      assertThatThrownBy(() -> linguist.analyzeRepository(root, "HEAD^{tree}"))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Unknown commit revision");
+      assertThatThrownBy(() -> linguist.analyzeRepository(root, "HEAD:main.java"))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Unknown commit revision");
+    }
+  }
+
+  @Test
+  void failsClearlyForAmbiguousAbbreviatedRevisions() throws Exception {
+    Path root = temporary.resolve("repo");
+    try (Git git = Git.init().setDirectory(root.toFile()).call();
+      var inserter = git.getRepository().newObjectInserter()) {
+      Map<String, ObjectId> byPrefix = new HashMap<>();
+      String ambiguousPrefix = null;
+      for (int index = 0; ambiguousPrefix == null; index++) {
+        ObjectId blob = inserter.insert(Constants.OBJ_BLOB, ("blob " + index).getBytes(StandardCharsets.UTF_8));
+        String prefix = blob.name().substring(0, 4);
+        if (byPrefix.putIfAbsent(prefix, blob) != null) {
+          ambiguousPrefix = prefix;
+        }
+      }
+      inserter.flush();
+      String revision = ambiguousPrefix;
+      assertThatThrownBy(() -> linguist.analyzeRepository(root, revision))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Unknown commit revision");
     }
   }
 

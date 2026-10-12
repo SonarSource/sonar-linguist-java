@@ -54,7 +54,7 @@ final class ShebangDetector {
       position = skipWhitespace(shebang, position);
       position = skipEnvArguments(shebang, position);
       Matcher scriptMatcher = matcherAt(NEXT_WORD, shebang, position);
-      if (!scriptMatcher.find()) {
+      if (!scriptMatcher.lookingAt()) {
         return Optional.empty();
       }
       script = scriptMatcher.group();
@@ -93,11 +93,11 @@ final class ShebangDetector {
 
   private static int envArgumentEnd(String value, int position) {
     Matcher option = matcherAt(ENV_OPTION, value, position);
-    if (option.find()) {
+    if (option.lookingAt()) {
       return option.end();
     }
     Matcher assignment = matcherAt(ENV_ASSIGNMENT, value, position);
-    return assignment.find() ? assignment.end() : position;
+    return assignment.lookingAt() ? assignment.end() : position;
   }
 
   private static Matcher matcherAt(Pattern pattern, String value, int position) {
