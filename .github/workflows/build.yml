@@ -15,18 +15,38 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: github-ubuntu-latest-s
     name: Build
     permissions:
-      contents: read
+      id-token: write
+      contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-
-      - name: Set up Java 21
-        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
-          distribution: temurin
-          java-version: '21'
-      - name: Build and verify publication
-        run: ./gradlew --no-daemon build publishToMavenLocal
+          version: 2026.10.3
+      - name: Build, analyze and deploy
+        uses: SonarSource/ci-github-actions/build-gradle@v2
+        with:
+          sonar-platform: sqc-eu
+          deploy-pull-request: true
+      - name: Upload build reports on failure
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: build-reports
+          path: '**/build/reports/**/*'
+          if-no-files-found: ignore
+
+  promote:
+    needs:
+      - build
+    runs-on: github-ubuntu-latest-s
+    name: Promote
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: SonarSource/ci-github-actions/promote@v2
+        with:
+          promote-pull-request: true

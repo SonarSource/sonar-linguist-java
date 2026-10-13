@@ -5,6 +5,9 @@ plugins {
   application
   `maven-publish`
   jacoco
+  signing
+  alias(libs.plugins.sonarqube)
+  alias(libs.plugins.artifactory)
 }
 
 group = "org.sonarsource.linguist"
@@ -45,6 +48,18 @@ tasks.jacocoTestReport {
     xml.required = true
     html.required = true
   }
+}
+
+sonar {
+  properties {
+    property("sonar.projectKey", "SonarSource_sonar-linguist-java")
+    property("sonar.organization", "sonarsource")
+    property("sonar.projectName", "Linguist Java")
+  }
+}
+
+tasks.sonar {
+  dependsOn(tasks.jacocoTestReport)
 }
 
 description = "Java port of GitHub Linguist: file language detection and repository language statistics"
@@ -218,4 +233,48 @@ publishing {
       }
     }
   }
+}
+
+// Signing keys are provided by the CI (ORG_GRADLE_PROJECT_signing*), only needed when deploying to Repox
+signing {
+  useInMemoryPgpKeys(
+    providers.gradleProperty("signingKeyId").orNull,
+    providers.gradleProperty("signingKey").orNull,
+    providers.gradleProperty("signingPassword").orNull)
+  setRequired { gradle.taskGraph.hasTask(":artifactoryPublish") }
+  sign(publishing.publications)
+}
+
+tasks.withType<Sign>().configureEach {
+  onlyIf { gradle.taskGraph.hasTask(":artifactoryPublish") }
+}
+
+artifactory {
+  clientConfig.isIncludeEnvVars = true
+  clientConfig.setEnvVarsExcludePatterns("*password*,*PASSWORD*,*secret*,*MAVEN_CMD_LINE_ARGS*,sun.java.command,*token*,*TOKEN*,*LOGIN*,*login*,*key*,*KEY*,*signing*")
+  setContextUrl(System.getenv("ARTIFACTORY_URL"))
+  publish {
+    repository {
+      repoKey = System.getenv("ARTIFACTORY_DEPLOY_REPO")
+      username = System.getenv("ARTIFACTORY_DEPLOY_USERNAME")
+      password = System.getenv("ARTIFACTORY_DEPLOY_ACCESS_TOKEN")
+    }
+    defaults {
+      setProperties(mapOf<String, String?>(
+        "build.name" to "sonar-linguist-java",
+        "build.number" to System.getenv("BUILD_NUMBER"),
+        "pr.branch.target" to System.getenv("GITHUB_BASE_REF"),
+        "pr.number" to System.getenv("PULL_REQUEST"),
+        "vcs.branch" to System.getenv("GITHUB_REF_NAME"),
+        "vcs.revision" to System.getenv("GITHUB_SHA"),
+        "version" to version.toString()))
+      publications("mavenJava")
+      setPublishPom(true)
+      setPublishIvy(false)
+    }
+  }
+  clientConfig.info.buildName = "sonar-linguist-java"
+  clientConfig.info.buildNumber = System.getenv("BUILD_NUMBER")
+  // The name of this variable is important because it's used by the delivery process when extracting version from Artifactory build info.
+  clientConfig.info.addEnvironmentProperty("PROJECT_VERSION", version.toString())
 }
