@@ -1,0 +1,9 @@
+{
+  "modelSha256": "0e1fdc67189d3c8b931b6362aa9606bf4ed2bb3c9801e422834219d6b49d2a97",
+  "orderedSampleDigest": "b2f04efcb7d9f22e3318808427e4fb96eee9130615c34a5e43a332a9beecd875",
+  "sampleCount": 3406,
+  "schemaVersion": 1,
+  "tokenizerSha256": "6fdfec743e3d0077a329f90924bac517a6cb675f38d1d1c46d3ed4387caaee55",
+  "upstreamCommit": "5fbdfcb8133be2bed88bf3ce62b2335f50474525",
+  "upstreamOrigin": "https://github.com/github-linguist/linguist.git"
+}

@@ -1,0 +1,142 @@
+{
+  "$id": "https://sonarsource.github.io/linguist-java/schemas/upstream-manifest-v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "files": {
+      "items": {
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "symlink"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "symlinkTarget"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "file"
+                }
+              }
+            },
+            "then": {
+              "not": {
+                "required": [
+                  "symlinkTarget"
+                ]
+              }
+            }
+          }
+        ],
+        "properties": {
+          "licenseId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mode": {
+            "pattern": "^[0-7]{6}$",
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\).+$",
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "size": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "symlinkTarget": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "file",
+              "symlink"
+            ]
+          }
+        },
+        "required": [
+          "licenseId",
+          "mode",
+          "path",
+          "sha256",
+          "size",
+          "type"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "importedAt": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "license": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "spdx": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "path",
+        "spdx"
+      ],
+      "type": "object"
+    },
+    "origin": {
+      "format": "uri",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1,
+      "type": "integer"
+    },
+    "version": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "commit",
+    "files",
+    "importedAt",
+    "license",
+    "origin",
+    "schemaVersion"
+  ],
+  "title": "Linguist Java upstream snapshot manifest v1",
+  "type": "object"
+}
