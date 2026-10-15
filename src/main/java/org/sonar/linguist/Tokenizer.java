@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 final class Tokenizer {
-  private static final int MAX_TOKEN_BYTES = 16;
-
   private Tokenizer() {
   }
 
@@ -27,9 +25,5 @@ final class Tokenizer {
       tokens.add(token);
     }
     return List.copyOf(tokens);
-  }
-
-  static String truncate(String token) {
-    return token.length() <= MAX_TOKEN_BYTES ? token : token.substring(0, MAX_TOKEN_BYTES);
   }
 }

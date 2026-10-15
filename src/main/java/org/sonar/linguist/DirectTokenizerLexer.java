@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 
 final class DirectTokenizerLexer {
   private static final int MAX_INPUT_BYTES = 100_000;
+  private static final int MAX_TOKEN_BYTES = 16;
   private static final char[] PUNCTUATION = "-!#$%&*+,.:;?@\\^`|~".toCharArray();
 
   private final String input;
@@ -220,7 +221,7 @@ final class DirectTokenizerLexer {
     String value = input.substring(position, position + length);
     int separator = value.lastIndexOf(' ');
     String interpreter = separator < 0 ? value : value.substring(separator + 1);
-    return "SHEBANG#!" + Tokenizer.truncate(interpreter);
+    return "SHEBANG#!" + truncate(interpreter);
   }
 
   private String directShebangToken(int length) {
@@ -230,7 +231,7 @@ final class DirectTokenizerLexer {
     String value = input.substring(position, position + length);
     int separator = value.lastIndexOf('/');
     String interpreter = separator < 0 ? value : value.substring(separator + 1);
-    return "env".equals(interpreter) ? null : ("SHEBANG#!" + Tokenizer.truncate(interpreter));
+    return "env".equals(interpreter) ? null : ("SHEBANG#!" + truncate(interpreter));
   }
 
   private int hashCommentLength() {
@@ -500,7 +501,7 @@ final class DirectTokenizerLexer {
   }
 
   private Match dynamic(Match best, int length) {
-    String token = length == 0 ? null : Tokenizer.truncate(input.substring(position, position + length));
+    String token = length == 0 ? null : truncate(input.substring(position, position + length));
     return better(best, length, token, State.INITIAL);
   }
 
@@ -538,6 +539,10 @@ final class DirectTokenizerLexer {
 
   private static boolean isHex(char value) {
     return isDigit(value) || (value >= 'A' && value <= 'F') || (value >= 'a' && value <= 'f');
+  }
+
+  private static String truncate(String token) {
+    return token.length() <= MAX_TOKEN_BYTES ? token : token.substring(0, MAX_TOKEN_BYTES);
   }
 
   private record Match(int length, @Nullable String token, State nextState) {

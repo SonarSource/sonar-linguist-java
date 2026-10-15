@@ -346,6 +346,19 @@ class RepositoryAnalysisTest {
   }
 
   @Test
+  void doesNotResolveEnclosingRepositoryFromNestedDirectory() throws Exception {
+    Path root = temporary.resolve("repo");
+    try (Git git = Git.init().setDirectory(root.toFile()).call()) {
+      write(root, "src/main.java", "text");
+      commit(git);
+      Path nested = root.resolve("src");
+      assertThatThrownBy(() -> linguist.analyzeRepository(nested))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Not a Git repository");
+    }
+  }
+
+  @Test
   void failsClearlyForRevisionsNotNamingAnExistingCommit() throws Exception {
     Path root = temporary.resolve("repo");
     try (Git git = Git.init().setDirectory(root.toFile()).call()) {

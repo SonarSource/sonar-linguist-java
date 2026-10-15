@@ -196,11 +196,10 @@ final class RepositoryAnalyzer {
     FileRepositoryBuilder builder = new FileRepositoryBuilder().setMustExist(true);
     if (Files.isDirectory(absolute.resolve("objects")) && Files.exists(absolute.resolve("HEAD"))) {
       builder.setGitDir(absolute.toFile());
+    } else if (Files.exists(absolute.resolve(Constants.DOT_GIT))) {
+      builder.setWorkTree(absolute.toFile());
     } else {
-      builder.findGitDir(absolute.toFile());
-      if (builder.getGitDir() == null) {
-        throw new IllegalArgumentException("Not a Git repository: " + path);
-      }
+      throw new IllegalArgumentException("Not a Git repository: " + path);
     }
     return builder.build();
   }
