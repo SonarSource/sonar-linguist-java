@@ -293,7 +293,8 @@ This networked maintenance task downloads the GitHub archive for the exact
 commit in `upstream/manifest.json` into `build/classifier-model`, validates every
 archive path, extracts only `samples/`, trains twice, verifies byte-for-byte
 reproducibility, checks ambiguous sample classifications, and atomically
-publishes the first result. Downloaded archives and extracted samples are
+publishes the first result. Training and scoring use `StrictMath`, so the model
+is bit-identical across platforms and JDK builds. Downloaded archives and extracted samples are
 temporary build data and are removed before the task exits.
 
 The metadata records the upstream provenance, sample digest and count, schema

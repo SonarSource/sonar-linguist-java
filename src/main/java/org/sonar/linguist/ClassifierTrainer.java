@@ -71,7 +71,7 @@ final class ClassifierTrainer {
 
     double[] inverseClassFrequencies = new double[vocabulary.size()];
     for (int index = 0; index < inverseClassFrequencies.length; index++) {
-      inverseClassFrequencies[index] = Math.log((double) languageCount / classFrequencies[index]) + 1.0;
+      inverseClassFrequencies[index] = StrictMath.log((double) languageCount / classFrequencies[index]) + 1.0;
     }
     return inverseClassFrequencies;
   }
@@ -101,7 +101,7 @@ final class ClassifierTrainer {
     sample.forEach((token, frequency) -> {
       Integer index = vocabulary.get(token);
       if (index != null) {
-        double termFrequency = 1.0 + Math.log(frequency);
+        double termFrequency = 1.0 + StrictMath.log(frequency);
         weightedSample.put(index, termFrequency * inverseClassFrequencies[index]);
       }
     });
@@ -110,7 +110,7 @@ final class ClassifierTrainer {
   }
 
   private static void normalize(Map<Integer, Double> vector) {
-    double norm = Math.sqrt(vector.values().stream().mapToDouble(value -> value * value).sum());
+    double norm = StrictMath.sqrt(vector.values().stream().mapToDouble(value -> value * value).sum());
     if (norm != 0.0) {
       vector.replaceAll((index, value) -> value / norm);
     }
