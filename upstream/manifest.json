@@ -1,5 +1,5 @@
 {
-  "commit": "5fbdfcb8133be2bed88bf3ce62b2335f50474525",
+  "commit": "73ee9a3b277f398c37ca4ab0dea0193849de6460",
   "files": [
     {
       "licenseId": "upstream-mit",
@@ -13,8 +13,8 @@
       "licenseId": "upstream-mit",
       "mode": "100644",
       "path": "grammars.yml",
-      "sha256": "1d29ae28b8f566b4307977642a30363da935e820e2f818292ad42d106a07f9cc",
-      "size": 34933,
+      "sha256": "26362b0fcb109484486448a1224f209f66cb08a9bed8eecbbdd90f8faa9ca72a",
+      "size": 35221,
       "type": "file"
     },
     {
@@ -45,8 +45,8 @@
       "licenseId": "upstream-mit",
       "mode": "100644",
       "path": "lib/linguist/languages.yml",
-      "sha256": "183243e30496ba53f5f8743b0e39c9f0e0bccc5a32639f7b541cc2285db0e043",
-      "size": 165959,
+      "sha256": "0c82627ad17a5901c36453aa068330f062668e156bbffc181c1d89ecb1e1e761",
+      "size": 166017,
       "type": "file"
     },
     {
@@ -66,7 +66,7 @@
       "type": "file"
     }
   ],
-  "importedAt": "2026-10-06T10:16:36Z",
+  "importedAt": "2026-10-16T07:32:57Z",
   "license": {
     "id": "upstream-mit",
     "path": "LICENSE",

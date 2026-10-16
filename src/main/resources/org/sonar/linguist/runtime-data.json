@@ -28,7 +28,7 @@
       "artifactFamily": "languageCatalog",
       "path": "languages.yml",
       "schemaVersion": 1,
-      "sha256": "183243e30496ba53f5f8743b0e39c9f0e0bccc5a32639f7b541cc2285db0e043",
+      "sha256": "0c82627ad17a5901c36453aa068330f062668e156bbffc181c1d89ecb1e1e761",
       "source": "github-linguist",
       "sourcePath": "lib/linguist/languages.yml"
     },
@@ -52,7 +52,7 @@
   "schemaVersion": 1,
   "sources": {
     "github-linguist": {
-      "commit": "5fbdfcb8133be2bed88bf3ce62b2335f50474525",
+      "commit": "73ee9a3b277f398c37ca4ab0dea0193849de6460",
       "origin": "https://github.com/github-linguist/linguist.git",
       "version": "9.7.0"
     }
