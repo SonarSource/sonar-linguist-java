@@ -38,7 +38,7 @@ class RuntimeDataTest {
 
     Map<String, Object> sources = map(manifest.get("sources"));
     assertThat(map(sources.get("github-linguist")))
-      .containsEntry("commit", "5fbdfcb8133be2bed88bf3ce62b2335f50474525")
+      .containsEntry("commit", "73ee9a3b277f398c37ca4ab0dea0193849de6460")
       .containsEntry("version", "9.7.0");
   }
 

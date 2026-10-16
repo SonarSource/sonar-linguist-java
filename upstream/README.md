@@ -2,7 +2,7 @@
 
 `upstream/linguist/` contains the upstream data inputs used by the Java port,
 copied byte-for-byte from GitHub Linguist commit
-`5fbdfcb8133be2bed88bf3ce62b2335f50474525`.
+`73ee9a3b277f398c37ca4ab0dea0193849de6460`.
 
 The snapshot preserves upstream-relative paths so future imports produce
 recognizable Git diffs. Files below `upstream/linguist/` must not be edited
