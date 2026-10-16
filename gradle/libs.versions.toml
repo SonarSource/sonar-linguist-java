@@ -1,0 +1,13 @@
+[libraries]
+jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
+junit-bom = { module = "org.junit:junit-bom", version = "6.1.3" }
+assertj-core = { module = "org.assertj:assertj-core", version = "3.27.7" }
+icu4j = { module = "com.ibm.icu:icu4j", version = "78.3" }
+jgit = { module = "org.eclipse.jgit:org.eclipse.jgit", version = "7.8.0.202609011348-r" }
+snakeyaml = { module = "org.yaml:snakeyaml", version = "2.6" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
+[plugins]
+sonarqube = { id = "org.sonarqube", version = "7.4.0.8496" }
+artifactory = { id = "com.jfrog.artifactory", version = "6.0.4" }

@@ -1,0 +1,6 @@
+gradlew text eol=lf
+gradlew.bat text eol=crlf
+
+# Preserve the exact bytes of pinned upstream data.
+upstream/linguist/** -text whitespace=-blank-at-eol
+src/main/resources/org/sonar/linguist/*.yml -text whitespace=-blank-at-eol

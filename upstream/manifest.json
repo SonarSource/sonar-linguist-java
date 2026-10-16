@@ -1,0 +1,78 @@
+{
+  "commit": "5fbdfcb8133be2bed88bf3ce62b2335f50474525",
+  "files": [
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "LICENSE",
+      "sha256": "7717070c5a8c85440ff2312930bb30dd19002ab5bc235c9800042767f6f5242f",
+      "size": 1056,
+      "type": "file"
+    },
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "grammars.yml",
+      "sha256": "1d29ae28b8f566b4307977642a30363da935e820e2f818292ad42d106a07f9cc",
+      "size": 34933,
+      "type": "file"
+    },
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "lib/linguist/documentation.yml",
+      "sha256": "700d66ff76b900c5208e17feb85771dc8c1779387ea78fb516079ab70455c3a4",
+      "size": 841,
+      "type": "file"
+    },
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "lib/linguist/generic.yml",
+      "sha256": "5f530b2b4ffbda0ed08257f45413dc02389c6f27ea2d700427b24734dc6ff484",
+      "size": 520,
+      "type": "file"
+    },
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "lib/linguist/heuristics.yml",
+      "sha256": "ab475ccd63d98075516acfcda12dfc4eb29d634661245772bdac633470491571",
+      "size": 43357,
+      "type": "file"
+    },
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "lib/linguist/languages.yml",
+      "sha256": "183243e30496ba53f5f8743b0e39c9f0e0bccc5a32639f7b541cc2285db0e043",
+      "size": 165959,
+      "type": "file"
+    },
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "lib/linguist/popular.yml",
+      "sha256": "e81d08d0afcb774124fb0b4c8a0480e92e826fd6ede3534e94ff16c7b18be8b3",
+      "size": 320,
+      "type": "file"
+    },
+    {
+      "licenseId": "upstream-mit",
+      "mode": "100644",
+      "path": "lib/linguist/vendor.yml",
+      "sha256": "4d59676f307e8541c1925315b8b51ee79e00393a1c67f726206c68e8bf4d802b",
+      "size": 6706,
+      "type": "file"
+    }
+  ],
+  "importedAt": "2026-10-06T10:16:36Z",
+  "license": {
+    "id": "upstream-mit",
+    "path": "LICENSE",
+    "spdx": "MIT"
+  },
+  "origin": "https://github.com/github-linguist/linguist.git",
+  "schemaVersion": 1,
+  "version": "9.7.0"
+}
