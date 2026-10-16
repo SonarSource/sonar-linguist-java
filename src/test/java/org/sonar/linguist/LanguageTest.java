@@ -77,6 +77,19 @@ class LanguageTest {
   }
 
   @Test
+  void exposesTreeSitterQueryAsDataLanguage() {
+    Language treeSitterQuery = language("Tree-sitter Query");
+
+    assertThat(treeSitterQuery.type()).isEqualTo(LanguageType.DATA);
+    assertThat(treeSitterQuery.aliases()).containsExactly("tree-sitter-query", "tsq");
+    assertThat(treeSitterQuery.extensions()).containsExactly(".scm");
+    assertThat(treeSitterQuery.tmScope()).isEqualTo("source.tsq");
+    assertThat(treeSitterQuery.aceMode()).isEqualTo("scheme");
+    assertThat(treeSitterQuery.codeMirrorMode()).contains("scheme");
+    assertThat(treeSitterQuery.codeMirrorMimeType()).contains("text/x-scheme");
+  }
+
+  @Test
   void exposesDerivedAndOptionalMetadata() {
     Language commonLisp = language("Common Lisp");
     Language fstar = language("F*");
