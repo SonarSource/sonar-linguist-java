@@ -51,7 +51,7 @@ final class Classifier {
 
     Map<Integer, Double> vector = new TreeMap<>();
     termFrequencies.forEach((index, frequency) -> {
-      double termFrequency = 1.0 + Math.log(frequency);
+      double termFrequency = 1.0 + StrictMath.log(frequency);
       vector.put(index, termFrequency * model.inverseClassFrequency(index));
     });
     normalize(vector);
@@ -79,7 +79,7 @@ final class Classifier {
   }
 
   private static void normalize(Map<Integer, Double> vector) {
-    double norm = Math.sqrt(vector.values().stream().mapToDouble(value -> value * value).sum());
+    double norm = StrictMath.sqrt(vector.values().stream().mapToDouble(value -> value * value).sum());
     vector.replaceAll((index, value) -> value / norm);
   }
 
