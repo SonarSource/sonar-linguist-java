@@ -371,7 +371,7 @@ GitHub Linguist compatibility.
 ## Differences from GitHub Linguist
 
 The bundled upstream data is pinned to Linguist 9.7.0, commit
-`73ee9a3b277f398c37ca4ab0dea0193849de6460`. This is an independent Java
+`d456527fe93355baa28c3c29d542c97282b61bc7`. This is an independent Java
 implementation, not a drop-in replacement for the Ruby API. Compatibility is
 covered by Java regression tests; exact parity is not guaranteed.
 

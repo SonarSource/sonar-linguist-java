@@ -90,6 +90,43 @@ class LanguageTest {
   }
 
   @Test
+  void exposesLanguagesAddedUpstream() {
+    Language step = language("STEP");
+    Language ifc = language("IFC");
+
+    assertThat(step.type()).isEqualTo(LanguageType.DATA);
+    assertThat(step.aliases()).containsExactly("step", "iso-10303-21", "p21");
+    assertThat(step.extensions()).containsExactly(".step", ".stp");
+    assertThat(ifc.type()).isEqualTo(LanguageType.DATA);
+    assertThat(ifc.group()).isEqualTo(step);
+    assertThat(language("avs").name()).isEqualTo("AviSynth");
+    assertThat(language("avisynth+").name()).isEqualTo("AviSynth");
+    assertThat(language("EasyCrypt").extensions()).containsExactly(".ec");
+    assertThat(language("METAFONT").extensions()).containsExactly(".mf");
+    assertThat(language("MetaPost").extensions()).containsExactly(".mp");
+    assertThat(language("TSRX").extensions()).containsExactly(".tsrx");
+    assertThat(language("Uiua").extensions()).containsExactly(".ua");
+    assertThat(language("WESL").extensions()).containsExactly(".wesl");
+  }
+
+  @Test
+  void exposesAliasesAddedUpstream() {
+    assertThat(language("m language").name()).isEqualTo("Power Query");
+    assertThat(language("m formula language").name()).isEqualTo("Power Query");
+    assertThat(language("lisp data").name()).isEqualTo("Emacs Lisp");
+    assertThat(language("parindent").name()).isEqualTo("Text");
+    assertThat(language("indented text").name()).isEqualTo("Text");
+  }
+
+  @Test
+  void allowsPlainTextCodeMirrorMimeTypeWithoutMode() {
+    Language text = language("Text");
+
+    assertThat(text.codeMirrorMode()).isEmpty();
+    assertThat(text.codeMirrorMimeType()).contains("text/plain");
+  }
+
+  @Test
   void exposesDerivedAndOptionalMetadata() {
     Language commonLisp = language("Common Lisp");
     Language fstar = language("F*");

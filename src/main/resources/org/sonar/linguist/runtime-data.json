@@ -20,7 +20,7 @@
       "artifactFamily": "heuristics",
       "path": "heuristics.yml",
       "schemaVersion": 1,
-      "sha256": "ab475ccd63d98075516acfcda12dfc4eb29d634661245772bdac633470491571",
+      "sha256": "68c647ca6dc7af41e7986892590648205f58598ca1a0415f6a1b34d024565e3d",
       "source": "github-linguist",
       "sourcePath": "lib/linguist/heuristics.yml"
     },
@@ -28,7 +28,7 @@
       "artifactFamily": "languageCatalog",
       "path": "languages.yml",
       "schemaVersion": 1,
-      "sha256": "0c82627ad17a5901c36453aa068330f062668e156bbffc181c1d89ecb1e1e761",
+      "sha256": "09c13db185b6f9b8f64b932dcd79815fef4a67624ab2dade9c194388d1dbe29d",
       "source": "github-linguist",
       "sourcePath": "lib/linguist/languages.yml"
     },
@@ -52,7 +52,7 @@
   "schemaVersion": 1,
   "sources": {
     "github-linguist": {
-      "commit": "73ee9a3b277f398c37ca4ab0dea0193849de6460",
+      "commit": "d456527fe93355baa28c3c29d542c97282b61bc7",
       "origin": "https://github.com/github-linguist/linguist.git",
       "version": "9.7.0"
     }
