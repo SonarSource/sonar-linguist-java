@@ -29,6 +29,16 @@ class HeuristicDetectorTest {
   }
 
   @Test
+  void distinguishesEasyCryptFromEc() {
+    assertThat(detect("Schnorr.ec", "require import AllCore Distr.\n\nlemma foo : true.\nproof. by trivial. qed.\n"))
+      .extracting(Language::name)
+      .containsExactly("EasyCrypt");
+    assertThat(detect("List.ec", "import \"ecere\"\n\nclass List : OldList\n{\n   void Add(Link item);\n}\n"))
+      .extracting(Language::name)
+      .containsExactly("eC");
+  }
+
+  @Test
   void ignoresPathsWithoutHeuristicRules() {
     assertThat(detect("Main.java", "class Main {}\n")).isEmpty();
   }
