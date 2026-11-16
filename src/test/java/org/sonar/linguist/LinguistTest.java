@@ -35,7 +35,12 @@ class LinguistTest {
     "index.html, HTML", "app.tsx, TSX", "notebook.ipynb, Jupyter Notebook",
     "build.gradle.kts, Gradle Kotlin DSL", "main.kts, Kotlin",
     "Dockerfile, Dockerfile", "nested/Containerfile, Dockerfile",
-    "Makefile, Makefile", "Rakefile, Ruby", ".bashrc, Shell"
+    "Makefile, Makefile", "Rakefile, Ruby", ".bashrc, Shell",
+    "script.avs, AviSynth", "plugin.avsi, AviSynth", "font.mf, METAFONT", "figure.mp, MetaPost",
+    "part.step, STEP", "part.stp, STEP", "building.ifc, IFC", "page.tsrx, TSRX", "solver.ua, Uiua",
+    "shader.wesl, WESL", "clip.vpy, Python", "data.eld, Emacs Lisp", ".codespellrc, INI",
+    ".cursorignore, Ignore List", ".stow-local-ignore, Ignore List", ".autorc, JSON",
+    ".ert-runner, Option List"
   })
   void recognizesLanguagesAndCompoundExtensions(String path, String expected) {
     assertThat(languageName(detect(path))).isEqualTo(expected);

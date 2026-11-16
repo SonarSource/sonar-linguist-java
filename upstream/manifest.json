@@ -1,5 +1,5 @@
 {
-  "commit": "73ee9a3b277f398c37ca4ab0dea0193849de6460",
+  "commit": "d456527fe93355baa28c3c29d542c97282b61bc7",
   "files": [
     {
       "licenseId": "upstream-mit",
@@ -13,8 +13,8 @@
       "licenseId": "upstream-mit",
       "mode": "100644",
       "path": "grammars.yml",
-      "sha256": "26362b0fcb109484486448a1224f209f66cb08a9bed8eecbbdd90f8faa9ca72a",
-      "size": 35221,
+      "sha256": "043e69bbffcbb705eaff9188774a581fd16e14c6075810857d9b27f252ec38d3",
+      "size": 35503,
       "type": "file"
     },
     {
@@ -37,16 +37,16 @@
       "licenseId": "upstream-mit",
       "mode": "100644",
       "path": "lib/linguist/heuristics.yml",
-      "sha256": "ab475ccd63d98075516acfcda12dfc4eb29d634661245772bdac633470491571",
-      "size": 43357,
+      "sha256": "68c647ca6dc7af41e7986892590648205f58598ca1a0415f6a1b34d024565e3d",
+      "size": 43904,
       "type": "file"
     },
     {
       "licenseId": "upstream-mit",
       "mode": "100644",
       "path": "lib/linguist/languages.yml",
-      "sha256": "0c82627ad17a5901c36453aa068330f062668e156bbffc181c1d89ecb1e1e761",
-      "size": 166017,
+      "sha256": "09c13db185b6f9b8f64b932dcd79815fef4a67624ab2dade9c194388d1dbe29d",
+      "size": 167711,
       "type": "file"
     },
     {
@@ -66,7 +66,7 @@
       "type": "file"
     }
   ],
-  "importedAt": "2026-10-16T07:32:57Z",
+  "importedAt": "2026-11-13T11:27:38Z",
   "license": {
     "id": "upstream-mit",
     "path": "LICENSE",

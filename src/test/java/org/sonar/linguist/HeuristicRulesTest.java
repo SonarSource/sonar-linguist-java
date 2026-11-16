@@ -15,7 +15,7 @@ class HeuristicRulesTest {
   void parsesBundledDefinitionsWithoutChangingOrder() {
     HeuristicRules.Definition definition = HeuristicRules.bundled();
 
-    assertThat(definition.disambiguations()).hasSize(145);
+    assertThat(definition.disambiguations()).hasSize(146);
     assertThat(definition.namedPatterns()).hasSize(23);
     assertThat(definition.namedPatterns().keySet()).startsWith("cpp", "euphoria", "fortran");
 
