@@ -8,13 +8,19 @@ on:
         description: 'Full version including build number, e.g. 0.1.0.123'
         required: true
         type: string
+      dryRun:
+        description: Flag to enable the dry-run execution
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   release:
     permissions:
       id-token: write
       contents: write
-    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@bf4faffefea8fce5e434a3b185d2ac03fba5592c # 7.7.1
+    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@v7
     with:
       version: ${{ inputs.version }}
+      dryRun: ${{ inputs.dryRun }}
       mavenCentralSync: true
