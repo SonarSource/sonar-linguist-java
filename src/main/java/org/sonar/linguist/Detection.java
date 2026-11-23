@@ -195,7 +195,7 @@ public final class Detection {
     private List<Language> candidates = List.of();
     private Map<Language, Double> classifierScores = Map.of();
     private final String path;
-    private String extension;
+    private final String extension;
     private long byteSize;
     private EncodingMetadata encoding = EncodingMetadata.empty();
     private boolean binary;
